@@ -23,8 +23,11 @@ public class TestaVendas {
 			e.printStackTrace();
 		}
 
-		venDAO.inserirItemCarrinho(12,"12345678900", 1, 1);
-		venDAO.finalizarVenda();
+		/*FUNÇÕES PARA IMPLEMENTAR NO MAIN*/
+//		venDAO.alterarSalario("98765432100", 1500);
+//		venDAO.inserirItemCarrinho(numeroCx, cpfVendedor, codItem, qtd);
+//		venDAO.finalizarVenda();
+		
 
 	}
 
