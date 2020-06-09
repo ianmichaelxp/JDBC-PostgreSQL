@@ -25,7 +25,7 @@ public class FuncionarioDAO
 			ResultSet res = st.executeQuery();
 			while (res.next())
 			{
-			   System.out.print("CPF: " + res.getString("cpf") + " Nome: " + res.getString("cpf") + " Endereco: " + 
+			   System.out.print("CPF: " + res.getString("cpf") + " Nome: " + res.getString("nome") + " Endereco: " + 
 					   res.getString("endereco") + " Data de demissão: " + res.getDate("data_demissao") + " Motivo da demissão: " + 
 					   res.getString("motivo_demissao") + " Funcao: " + res.getString("funcao") + " Salario: " + 
 					   res.getDouble("salario") + " Classificacao: " + res.getString("classificacao"));

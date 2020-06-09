@@ -74,5 +74,27 @@ public class VendasDAO
 		}	
 	}/*FIM DO METODO FINALIZAR VENDA*/
 	
+	public void classificacarVendedores() 
+	{
+		/*cpf_ varchar, nome_ varchar, endereco_ varchar, funcao_ varchar, salario_ double precision, classificacao_ varchar*/
+		try 
+		{	
+			Statement st = con.createStatement();
+			ResultSet res = st.executeQuery("select classificacao_vendas()");
+			while (res.next())
+			{
+				System.out.print("CPF: " + res.getString("cpf_") + " Nome: " + res.getString("nome_") + " Endereco: " + 
+						   res.getString("endereco_") + " Data de demissão: " + " Funcao: " + res.getString("funcao_") + " Salario: " + 
+						   res.getDouble("salario_") + " Classificacao: " + res.getString("classificacao_"));
+			}//Fim do while
+			res.close();
+			st.close();
+		}//fim do try
+		catch (SQLException e)
+		{
+			System.out.println("Erro - " + e.getMessage());
+		}
+		
+	}/*FIM DO MÉTODO CLASSIFICACAO VENDAS*/
 	
 }
