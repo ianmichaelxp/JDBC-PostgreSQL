@@ -27,6 +27,7 @@ public class TestaVendas {
 //		venDAO.alterarSalario("98765432100", 1500);
 //		venDAO.inserirItemCarrinho(numeroCx, cpfVendedor, codItem, qtd);
 //		venDAO.finalizarVenda();
+		venDAO.consultarVendasData("2020-06-04", "2020-06-05", 1); 
 		
 
 	}
