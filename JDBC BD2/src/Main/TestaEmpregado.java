@@ -78,5 +78,6 @@ public class TestaEmpregado {
 		//chamado do método que insere um novo empregado
 		System.out.println("entrou no fun");
 		funDAO.cadastrarFuncionario(fun);
+//		funDAO.alterarSalario("98765432100", 1500);
 	}
 }

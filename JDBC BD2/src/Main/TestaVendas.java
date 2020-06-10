@@ -11,7 +11,7 @@ public class TestaVendas {
 		VendasDAO venDAO = null;
 		try 
 		{
-			System.out.println("entrou no try");
+			System.out.println("Abrindo conexão...");
 			venDAO = new VendasDAO();
 
 		} catch (SQLException e) 
@@ -24,12 +24,12 @@ public class TestaVendas {
 		}
 
 		/*FUNÇÕES PARA IMPLEMENTAR NO MAIN*/
-//		venDAO.alterarSalario("98765432100", 1500);
 //		venDAO.inserirItemCarrinho(numeroCx, cpfVendedor, codItem, qtd);
 //		venDAO.finalizarVenda();
-		venDAO.consultarVendasData("2020-06-04", "2020-06-05", 1); 
-		
-
+//		venDAO.consultarVendasData("2020-06-04", "2020-06-06", "12345678909"); 
+//		venDAO.alterarVenda(codItem, qtdItem);
+//		venDAO.exibirVendas();
+//		venDAO.classificacarVendedores();
 	}
 
 }

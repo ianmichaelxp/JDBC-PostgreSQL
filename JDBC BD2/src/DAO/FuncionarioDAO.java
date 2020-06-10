@@ -78,6 +78,33 @@ public class FuncionarioDAO
 
 		}
 		
-	}
+	}/*FIM DO MÉTODO CADASTRO FUNCIONARIO*/
+	
+
+	public void alterarSalario(String cpf_ou_nome, double novo_salario) /*filtro varchar, novo_sal double precision*/
+	{
+		try 
+		{			
+			//(numero_cx integer, cpf_v varchar, cod_item integer, qtd integer)
+			PreparedStatement st = con.prepareStatement("SELECT * from alterar_salario(?,?)");
+			st.setString(1, cpf_ou_nome);
+			st.setDouble(2, novo_salario);
+			
+			ResultSet res = st.executeQuery();
+			while (res.next())
+			{
+				//cpf_ varchar, nome_ varchar, endereco_ varchar, funcao_ varchar, salario_ double precision
+				System.out.println("\n| CPF: " + res.getString("cpf_") + " | Nome: " + res.getString("nome_") + " | Endereco: " + 
+						   res.getString("endereco_") + " | Funcao: " + res.getString("funcao_") + " | Salario: " + 
+						   res.getDouble("salario_") + " |");
+			}//Fim do while
+			res.close();
+			st.close();
+		}//fim do try
+		catch (SQLException e)
+		{
+			System.out.println("Erro - " + e.getMessage());
+		}
+	}/*FIM DO MÉTODO ALTERAR SALARIO*/
 
 }

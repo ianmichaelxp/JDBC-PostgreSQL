@@ -83,12 +83,16 @@ public class VendasDAO
 		try 
 		{	
 			Statement st = con.createStatement();
-			ResultSet res = st.executeQuery("select classificacao_vendas()");
+			ResultSet res = st.executeQuery("select * from classificacao_vendas()");
 			while (res.next())
 			{
-				System.out.print("CPF: " + res.getString("cpf_") + "| Nome: " + res.getString("nome_") + "| Endereco: " + 
-						   res.getString("endereco_") + "| Data de demissão: " + "| Funcao: " + res.getString("funcao_") + " Salario: " + 
-						   res.getDouble("salario_") + "| Classificacao: " + res.getString("classificacao_"));
+				System.out.print(
+							"\n|CPF:       " + res.getString("cpf_") 
+							+ "| Nome:     " + res.getString("nome_") 
+							+ "| Endereco: " + res.getString("endereco_") 
+							+ "| Funcao:   " + res.getString("funcao_") 
+							+ "| Salario:  " + res.getDouble("salario_") 
+							+ "| Classif:  " + res.getString("classificacao_"));
 			}//Fim do while
 			res.close();
 			st.close();
@@ -100,35 +104,9 @@ public class VendasDAO
 		
 	}/*FIM DO MÉTODO CLASSIFICACAO VENDAS*/
 	
-	public void alterarSalario(String cpf_ou_nome, double novo_salario) /*filtro varchar, novo_sal double precision*/
-	{
-		try 
-		{			
-			//(numero_cx integer, cpf_v varchar, cod_item integer, qtd integer)
-			PreparedStatement st = con.prepareStatement("SELECT * from alterar_salario(?,?)");
-			st.setString(1, cpf_ou_nome);
-			st.setDouble(2, novo_salario);
-			
-			ResultSet res = st.executeQuery();
-			while (res.next())
-			{
-				//cpf_ varchar, nome_ varchar, endereco_ varchar, funcao_ varchar, salario_ double precision
-				System.out.println("\n| CPF: " + res.getString("cpf_") + " | Nome: " + res.getString("nome_") + " | Endereco: " + 
-						   res.getString("endereco_") + " | Funcao: " + res.getString("funcao_") + " | Salario: " + 
-						   res.getDouble("salario_") + " |");
-			}//Fim do while
-			res.close();
-			st.close();
-		}//fim do try
-		catch (SQLException e)
-		{
-			System.out.println("Erro - " + e.getMessage());
-		}
-	}/*FIM DO MÉTODO ALTERAR SALARIO*/
 	
 	public void consultarVendasData(String dataInicial, String dataFinal, int codigoItem) 
 	{
-		Date x = data.converteData(dataInicial);
 		try 
 		{	//data_inicial date, data_final date, codigoitem integer	
 			PreparedStatement st = con.prepareStatement("SELECT * from consultar_vendas_datas(?,?,?)");
@@ -161,4 +139,94 @@ public class VendasDAO
 		}
 		
 	}/*FIM DO METODO CONSULTA DATA*/
+	
+	public void consultarVendasData(String dataInicial, String dataFinal, String cpfVendedor) 
+	{
+		try 
+		{	//data_inicial date, data_final date, codigoitem integer	
+			PreparedStatement st = con.prepareStatement("SELECT * from consultar_vendas_datas(?,?,?)");
+			st.setDate(1, data.converteData(dataInicial));
+			st.setDate(2, data.converteData(dataFinal));
+			st.setString(3, cpfVendedor);
+			
+			
+			ResultSet res = st.executeQuery();
+			while (res.next())
+			{
+				//codigo_venda integer, numero_caixa integer, cpf_vendedor varchar(11), comissao_venda double precision, valor_venda double precision, data_venda date, codigo_item integer, quantidade_item integer
+				System.out.println(
+							"\n | Código venda:   " + res.getInt("codigo_venda") 
+							+ " | Número caixa:   " + res.getInt("numero_caixa") 
+							+ " | CPF vendedor:   " + res.getString("cpf_vendedor") 
+							+ " | Comissão venda: " + res.getString("comissao_venda") 
+							+ " | Valor venda:    " + res.getDouble("valor_venda") 
+							+ " | Data venda:     " + res.getDate("data_venda") 
+							+ " | Código item:    " + res.getInt("codigo_item") 
+							+ " | Quantidade:     " + res.getInt("quantidade_item") 
+							+ " |");
+			}//Fim do while
+			res.close();
+			st.close();
+		}//fim do try
+		catch (SQLException e)
+		{
+			System.out.println("Erro - " + e.getMessage());
+		}
+		
+	}/*FIM DO METODO CONSULTA DATA*/
+	
+	public void alterarVenda(int codItem, int qtdItem) 
+	{
+		try 
+		{	
+			PreparedStatement st = con.prepareStatement("SELECT * from alterar_venda(?,?)");
+			st.setInt(1, codItem);
+			st.setInt(2, qtdItem);
+			
+			ResultSet res = st.executeQuery();
+			while (res.next())
+			{
+				//num_nf integer, codigo_item integer, qtd integer
+				System.out.println(
+							"\n | Número nota:    " + res.getInt("num_nf") 
+							+ " | Código item:    " + res.getInt("codigo_item") 
+							+ " | Quantidade:     " + res.getInt("qtd") 
+							+ " |");
+			}//Fim do while
+			res.close();
+			st.close();
+		}//fim do try
+		catch (SQLException e)
+		{
+			System.out.println("Erro - " + e.getMessage());
+		}
+		
+	}/*FIM DO METODO CONSULTA DATA*/
+	
+	public void exibirVendas() 
+	{
+		try 
+		{	
+			Statement st = con.createStatement();
+			ResultSet res = st.executeQuery("select * from exibir_vendas()");
+			while (res.next())
+			{
+				//codigo_venda integer, numero_caixa integer, cpf_vendedor varchar(11), comissao_venda double precision, valor_venda double precision, data_venda date
+				System.out.print("\n | Código venda:   " + res.getInt("codigo_venda") 
+				+ " | Número caixa:   " + res.getInt("numero_caixa") 
+				+ " | CPF vendedor:   " + res.getString("cpf_vendedor") 
+				+ " | Comissão venda: " + res.getString("comissao_venda") 
+				+ " | Valor venda:    " + res.getDouble("valor_venda") 
+				+ " | Data venda:     " + res.getDate("data_venda")  
+				+ " |");
+			}//Fim do while
+			res.close();
+			st.close();
+		}//fim do try
+		catch (SQLException e)
+		{
+			System.out.println("Erro - " + e.getMessage());
+		}
+		
+	}/*FIM DO METODO EXIBIR VENDAS*/
 }
