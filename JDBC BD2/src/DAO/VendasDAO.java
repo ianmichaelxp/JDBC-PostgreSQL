@@ -37,14 +37,15 @@ public class VendasDAO
 				//cod_item_ integer, descricao_item varchar, setor_item varchar, estoque_item smallint, 
 				//preco_item double precision, garantia_item varchar, numero_nf integer, qtd_item integer)
 				
-			   System.out.print("Cod item: " + res.getInt("cod_item_") 
-			   				+ " Descrição: " + res.getString("descricao_item") 
-			   				+ " Setor: " + res.getString("setor_item") 
-			   				+ " Estoque: " + res.getInt("estoque_item") 
-			   				+ " Preço: " + res.getDouble("preco_item") 
-			   				+ " Prazo de garantia: " + res.getString("garantia_item") 
-			   				+ " Numero NF: " + res.getInt("numero_nf") 
-			   				+ " Quantidade: " + res.getInt("qtd_item"));
+			   System.out.print("\n|Cod item:  " + res.getInt("cod_item_") 
+			   				+ "| Descrição: " + res.getString("descricao_item") 
+			   				+ "| Setor:  " + res.getString("setor_item") 
+			   				+ "| Estoque: " + res.getInt("estoque_item") 
+			   				+ "| Preço:  " + res.getDouble("preco_item") 
+			   				+ "| Prazo de garantia:  " + res.getString("garantia_item") 
+			   				+ "| Numero NF:  " + res.getInt("numero_nf") 
+			   				+ "| Quantidade:  " + res.getInt("qtd_item") +
+			   				"|");
 		
 			}//Fim do while
 			res.close();
@@ -52,7 +53,7 @@ public class VendasDAO
 		}//fim do try
 		catch (SQLException e)
 		{
-			System.out.println("Erro - " + e.getMessage());
+			System.out.println("\nErro - " + e.getMessage());
 		}
 	}/*FIM DO MÉTODO INSERIR ITEM CARRINHO*/
 	
@@ -65,7 +66,7 @@ public class VendasDAO
 			ResultSet res = st.executeQuery("SELECT finalizar_venda()");
 			while (res.next())
 			{
-				System.out.print("Resposta do BD: ");
+				System.out.print("\nResposta do BD: ");
 				System.out.println(res.getString(1));
 			}//Fim do while
 			res.close();
@@ -86,7 +87,7 @@ public class VendasDAO
 			ResultSet res = st.executeQuery("select * from classificacao_vendas()");
 			while (res.next())
 			{
-				System.out.print(
+				System.out.println(
 							"\n|CPF:       " + res.getString("cpf_") 
 							+ "| Nome:     " + res.getString("nome_") 
 							+ "| Endereco: " + res.getString("endereco_") 
