@@ -36,11 +36,11 @@ public class TestaEmpregado {
 
 		//atribuindo valores aos atributos do objeto criado
 
-		fun.setCpf("12345556789");
+		fun.setCpf("12344455500");
 
-		fun.setNome("Spheal Kuros");
+		fun.setNome("Herriot bd2");
 
-		fun.setEndereco("S T J, 173");
+		fun.setEndereco("S T g, 111");
 
 //		String sValue = "2009-06-16";
 //		java.sql.Date dtValue = java.sql.Date.valueOf(sValue);

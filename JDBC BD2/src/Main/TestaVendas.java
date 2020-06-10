@@ -44,14 +44,19 @@ public class TestaVendas {
 	        	   int codItem = Integer.parseInt(JOptionPane.showInputDialog("Digite o código do item:"));
 	        	   int qtd = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade:"));
 	        	   int continua = Integer.parseInt(JOptionPane.showInputDialog("Deseja inserir mais itens? \nDigite 1 - sim ou 0 - não"));
+	        	   for (int i = 0; i < 50; ++i) System.out.println();
+	        	   System.out.println("-----------------------------------------------------------------|NOTA FISCAL|----------------------------------------------------------------------");
+	        	   venDAO.inserirItemCarrinho(numeroCx, cpfVendedor, codItem, qtd);
 	        	   while(continua > 0) 
 	        	   {
-	        		   codItem = Integer.parseInt(JOptionPane.showInputDialog("Digite o código do item:"));
+	        		   int codItem2 = Integer.parseInt(JOptionPane.showInputDialog("Digite o código do item:"));
 		        	   qtd = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade:"));
 		        	   continua = Integer.parseInt(JOptionPane.showInputDialog("Deseja inserir mais itens? \nDigite 1 - sim ou 0 - não"));
-	        		   venDAO.inserirItemCarrinho(numeroCx, cpfVendedor, codItem, qtd);
+		        	   for (int i = 0; i < 50; ++i) System.out.println();
+		        	   System.out.println("-----------------------------------------------------------------|NOTA FISCAL|----------------------------------------------------------------------");
+		        	   venDAO.inserirItemCarrinho(numeroCx, cpfVendedor, codItem2, qtd);
 	        	   }
-	        	   venDAO.inserirItemCarrinho(numeroCx, cpfVendedor, codItem, qtd);
+	        
 	        	   venDAO.finalizarVenda();
 	               break;
 	           case 2:
