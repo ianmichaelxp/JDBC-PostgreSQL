@@ -1,9 +1,7 @@
--- Database: Teste_loja
-
-DROP DATABASE "Teste_loja";
+-- Database: Loja
 drop schema public cascade;
 create schema public;
-CREATE DATABASE "Teste_loja"
+CREATE DATABASE "Loja"
     WITH 
     OWNER = postgres
     ENCODING = 'UTF8'
@@ -77,8 +75,6 @@ CREATE TABLE IF NOT EXISTS itens
 );
 
 
--- ALTER TABLE vendas ALTER COLUMN  cpf_vendedor TYPE VARCHAR (11);
-
 --REINICIAR TABELAS----------------------------------------
 truncate vendas cascade;
 truncate cx cascade;
@@ -91,18 +87,5 @@ ALTER SEQUENCE itens_cod_item_seq RESTART WITH 1;
 -----------------------------------------------------------
 
 
-
-
-alter table itens_vendidos drop constraint itens_vendidos_pkey;
-
-ALTER TABLE vendas ADD COLUMN valor_venda numeric(10,2);
-ALTER TABLE vendas ADD COLUMN data_venda date;
-ALTER TABLE funcionario ADD COLUMN classificacao varchar(50);
-
---ALTER TABLE vendas ADD FOREIGN KEY (cod_venda) REFERENCES cx(cod_venda);
-
-
-
---ALTER TABLE itens_vendidos ADD FOREIGN KEY (numero_nf) REFERENCES vendas(cod_venda);
 
 
